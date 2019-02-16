@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Settings>
+  <Sitecore>
+    <XConnect>
+      <Services>
+        <Messaging>
+          <Options>
+            <Rebus>
+              <MessageBus.Demo.Core.Buses.DemoBus>
+                <Transport>
+                  <SqlServer>
+                    <OneWay>true</OneWay>
+                    <ConnectionStringOrName>messaging</ConnectionStringOrName>
+                    <TableName>Sitecore_Transport</TableName>
+                    <InputQueueName>DemoMessagesQueue</InputQueueName>
+                  </SqlServer>
+                </Transport>
+                <Routing>
+                  <TypeBasedMappings>
+                    <TypeMappings>
+                      <DemoMessageMapping>
+                        <Type>MessageBus.Demo.Core.Model.DemoMessage, MessageBus.Demo.Core</Type>
+                        <DestinationQueue>DemoMessagesQueue</DestinationQueue>
+                      </DemoMessageMapping>
+                    </TypeMappings>
+                  </TypeBasedMappings>
+                </Routing>
+                <Logging Type="Rebus.Logging.ConsoleLoggerFactory,Rebus">
+                  <Parameters>
+                    <colored type="System.Boolean">true</colored>
+                  </Parameters>
+                </Logging>
+              </MessageBus.Demo.Core.Buses.DemoBus>
+
+              <MessageBus.Demo.Core.Buses.DemoPubSubBus>
+                <Transport>
+                  <SqlServer>
+                    <OneWay>true</OneWay>
+                    <ConnectionStringOrName>messaging</ConnectionStringOrName>
+                    <TableName>Sitecore_Transport</TableName>
+                    <InputQueueName>PubSubDemo</InputQueueName>
+                  </SqlServer>
+                </Transport>
+                <Subscriptions>
+                  <SqlServer>
+                    <!--Set of credentials for proper connection to database-->
+                    <ConnectionStringOrName>messaging</ConnectionStringOrName>
+                    <!--The name of the table which saves the information about the relationships between queues and messages-->
+                    <TableName>Sitecore_Subscriptions</TableName>
+                    <!--Means that both subscribers and publishers have access to the same central subscription storage-->
+                    <IsCentralized>true</IsCentralized>
+                  </SqlServer>
+                </Subscriptions>
+                <Logging Type="Rebus.Logging.ConsoleLoggerFactory,Rebus">
+                  <Parameters>
+                    <colored type="System.Boolean">true</colored>
+                  </Parameters>
+                </Logging>
+              </MessageBus.Demo.Core.Buses.DemoPubSubBus>
+            </Rebus>
+          </Options>
+        </Messaging>
+      </Services>
+    </XConnect>
+  </Sitecore>
+</Settings>

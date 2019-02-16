@@ -1,0 +1,26 @@
+﻿<Settings>
+  <!--
+    Provides default configuration for component services for the application    
+        
+    NOTE:
+      When registering a type you can configure the following values:
+        Type      (Required): The full type reference of the instance being registered
+        As        (Optional): The type the instance may be resolved as (defaults to Type if not provided)
+        LifeTime  (Optional): The lifetime of instance.  Can be Singleton or Transient. (defaults to Singleton)
+        Options   (Optional): If the type contains a constuctor that recieves IConfiguration, you can proivide
+                              addtional values here to match the resulting type of options for that type.
+  -->
+  <Sitecore>
+    <XConnect>
+      <Collection>
+        <Services>
+          <MessagesBus.Demo.XConnect.Plugins.ContactTrackerPlugin>
+            <Type>MessagesBus.Demo.XConnect.Plugins.ContactTrackerPlugin, MessagesBus.Demo.XConnect</Type>
+            <As>Sitecore.XConnect.Service.Plugins.IXConnectServicePlugin, Sitecore.XConnect.Service.Plugins</As>
+            <LifeTime>Singleton</LifeTime>
+          </MessagesBus.Demo.XConnect.Plugins.ContactTrackerPlugin>
+        </Services>
+      </Collection>
+    </XConnect>
+  </Sitecore>
+</Settings>
